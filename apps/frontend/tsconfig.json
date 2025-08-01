@@ -1,13 +1,17 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" },
-    {
   "compilerOptions": {
-    "noUnusedLocals": false,
-    "noUnusedParameters": false
-  }
-}
-  ]
+    "composite": true,
+    // DO NOT set "emit": false here
+    // Other options (add as needed):
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+  },
+  "include": ["src"]
 }
