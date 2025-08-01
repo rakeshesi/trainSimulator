@@ -4,6 +4,8 @@ A full-stack project with separate frontend and backend applications.
 Uses [pnpm](https://pnpm.io/) for fast and efficient package management.
 
 
+https://trainsimulator.onrender.com/
+
 Train Simulator is a web-based application designed to simulate real-time train operations, schedules, and station management. The project provides both a modern frontend (React, Vite, MUI) and a robust backend (Express, WebSocket), allowing users to visualize train movements, interact with simulation data, and manage train-related scenarios. It serves as a learning tool for transportation planning, train scheduling, and software architecture in real-time systems.
 
 Features:
