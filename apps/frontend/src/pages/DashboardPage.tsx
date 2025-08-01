@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Dashboard from "../components/Dashboard";
-import EmergencyStop from "../components/EmergencyStop";
 import { getTrainStatus, subscribeTrainStatus, postTrainControl } from "../api";
 
 interface TrainStatus {

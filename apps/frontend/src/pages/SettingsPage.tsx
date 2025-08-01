@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Paper, Typography, FormControl, InputLabel, Select, MenuItem, Switch, TextField, Button } from '@mui/material';
+import { Box, Paper, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { putTrainSettings } from '../api';
 

@@ -78,6 +78,9 @@ const WebSocket = require('ws');
 const wss = new WebSocket.Server({ server });
 
 setInterval(() => {
+  const maxSpeed = settings.thresholds.critical || 300;
+  const warningSpeed = settings.thresholds.warning || 120;
+
   // 1. Emergency stop: decelerate rapidly, engine off, signal red
   if (trainStatus.emergencyStopActive) {
     if (trainStatus.speed > 0) {
@@ -107,8 +110,17 @@ setInterval(() => {
   // 5. Normal operation: signal green
   else if (trainStatus.enginePower && trainStatus.speed >= 0) {
     trainStatus.signal = 'green';
-    trainStatus.speed += Math.random() * 1.5;
-    trainStatus.speed = Math.max(0, trainStatus.speed);
+    // Accelerate, but clamp to maximum allowed speed
+    const accel = Math.random() * 1.5;
+    trainStatus.speed = Math.min(maxSpeed, trainStatus.speed + accel);
+
+    // Warnings and critical log
+    if (trainStatus.speed > warningSpeed && trainStatus.speed <= maxSpeed) {
+      trainStatus.log.push(`Warning: Train speed high (${trainStatus.speed.toFixed(1)} ${settings.units})`);
+    }
+    if (trainStatus.speed > maxSpeed) {
+      trainStatus.log.push(`Critical: Train speed exceeded safe limit! (${trainStatus.speed.toFixed(1)} ${settings.units})`);
+    }
   }
 
   wss.clients.forEach(client => {
